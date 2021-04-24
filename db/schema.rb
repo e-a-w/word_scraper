@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_052325) do
+ActiveRecord::Schema.define(version: 2021_04_24_061422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "sites", force: :cascade do |t|
     t.string "name"
-    t.string "url"
-    t.string "css"
+    t.string "word_url"
+    t.string "word_css"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "definition_url"
   end
 
 end

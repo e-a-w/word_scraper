@@ -1,18 +1,13 @@
 <header class="jumbotron text-center">
-  <h1>Word of the Day</h1>
-
+  <h1>Words of the Day</h1>
+  <h3>click on the word to go to the definition!</h3>
   <hr/>
-  
-  <% @words.each do |word| %>
-  <div>
-    <h3><%= word %>:</h3>
-    <p>definition</p>
-  </div>
-  <% end %>
-
-  <hr/>
-
-  <input type="date" value="2018-07-22" aria-label="date">
-
-  <button class="btn btn-info btn-lg">Go!</button>
+  <ul class="list-group">
+    <% @words.each do |word| %>
+      <a href="<%= word.dig(:definition_url) %>" class="list-group-item list-group-item-info">
+        <strong class="word"><%= word.dig(:text) %></strong>
+        <small class="word-source">from <%= word.dig(:source) %></small>
+      </a>
+    <% end %>
+  </ul>
 </header>

@@ -1,15 +1,13 @@
 class HomeController < ApplicationController
+  before_action :get_words
 
   def index
-    get_words
+    @words
   end
 
   private
 
   def get_words
-    @words = [
-      WordScraperService.call('merriam_webster'),
-      WordScraperService.call('dictionary')
-    ]
+    @words = Site.all.map { |site| WordScraperService.call(site.name) }
   end
 end
