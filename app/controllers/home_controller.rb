@@ -1,12 +1,15 @@
 class HomeController < ApplicationController
 
   def index
-    get_word
+    get_words
   end
 
   private
 
-  def get_word
-    @word = WordScraperService.call('merriam_webster')
+  def get_words
+    @words = [
+      WordScraperService.call('merriam_webster'),
+      WordScraperService.call('dictionary')
+    ]
   end
 end

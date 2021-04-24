@@ -1,12 +1,24 @@
+require 'open-uri'
+
 class WordScraperService < ApplicationService
   def initialize(source)
     @source = source
-    @url = 'https://www.merriam-webster.com/word-of-the-day/'
-    @css = 'div.word-and-pronunciation > h1'
+    @url = get_url
+    @css = get_css
+  end
+
+  def get_url 
+    @url = Site.find_by(name: @source).url
+  end
+
+  def get_css
+    @css = Site.find_by(name: @source).css
   end
 
   def call
-    body = Nokogiri::HTML(open(@url))
-    word = body.css(@css).text
+    return unless @url && @css
+
+    body = Nokogiri::HTML(open(@url).read)
+    body.css(@css).map(&:text).first
   end
 end

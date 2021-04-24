@@ -3,10 +3,12 @@
 
   <hr/>
   
+  <% @words.each do |word| %>
   <div>
-    <h3><%= @word %>:</h3>
+    <h3><%= word %>:</h3>
     <p>definition</p>
   </div>
+  <% end %>
 
   <hr/>
 
